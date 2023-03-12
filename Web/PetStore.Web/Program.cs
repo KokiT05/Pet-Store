@@ -1,4 +1,7 @@
-﻿namespace PetStore.Web
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using PetStore.Data;
+namespace PetStore.Web
 {
     using System.Reflection;
 
@@ -20,12 +23,18 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using System;
 
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+            //builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
             ConfigureServices(builder.Services, builder.Configuration);
             var app = builder.Build();
             Configure(app);
@@ -65,6 +74,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<IProductService, ProductService>();
         }
 
         private static void Configure(WebApplication app)

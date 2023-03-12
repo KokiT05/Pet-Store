@@ -1,0 +1,9 @@
+﻿@model ICollection<PetStore.Services.ProductDTO>
+
+<h1>All products</h1>
+@foreach (var productDTO in Model)
+{
+    <h1>@productDTO.Name</h1>
+    <h1>@productDTO.Price</h1>
+    <h1>@productDTO.CategoryName</h1>
+}
