@@ -54,4 +54,16 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Account\Manage\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Image\HomePageImg\PetStoreBackgroundImg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Image\PetStore ball toy.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\Image\PetStoreBallToy.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -1,0 +1,6 @@
+﻿@model ICollection<PetStore.Services.CategoryDTO>
+
+@foreach (PetStore.Services.CategoryDTO categoryDTO in Model)
+{
+    <h1>@categoryDTO.Name</h1>
+}

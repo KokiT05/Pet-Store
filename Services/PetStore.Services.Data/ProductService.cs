@@ -28,10 +28,10 @@ namespace PetStore.Services.Data
                  products = await this.productRepository
                                             .AllAsNoTracking()
                                             .Where(p => p.CategoryId == categoryId)
-                                            .Select(pDTO => new ProductDTO(pDTO.Name, pDTO.Price)
+                                            .Select(p => new ProductDTO(p.Name, p.Price, p.Image)
                                             {
-                                                CategoryId = pDTO.CategoryId,
-                                                CategoryName = pDTO.Category.Name,
+                                                CategoryId = p.CategoryId,
+                                                CategoryName = p.Category.Name,
                                             })
                                             .ToListAsync();
             }
@@ -47,10 +47,10 @@ namespace PetStore.Services.Data
                 products = await this.productRepository
                                            .AllAsNoTracking()
                                            .Where(p => p.Name.ToLower().Contains(productName.ToLower()))
-                                           .Select(pDTO => new ProductDTO(pDTO.Name, pDTO.Price)
+                                           .Select(p => new ProductDTO(p.Name, p.Price, p.Image)
                                            {
-                                               CategoryId = pDTO.CategoryId,
-                                               CategoryName = pDTO.Category.Name,
+                                               CategoryId = p.CategoryId,
+                                               CategoryName = p.Category.Name,
                                            })
                                            .ToListAsync();
             }
@@ -62,10 +62,10 @@ namespace PetStore.Services.Data
         {
             ICollection<ProductDTO> products = await this.productRepository
                                     .AllAsNoTracking()
-                                    .Select(pDTO => new ProductDTO(pDTO.Name, pDTO.Price)
+                                    .Select(p => new ProductDTO(p.Name, p.Price, p.Image)
                                     {
-                                        CategoryId = pDTO.CategoryId,
-                                        CategoryName = pDTO.Category.Name,
+                                        CategoryId = p.CategoryId,
+                                        CategoryName = p.Category.Name,
                                     }).ToListAsync();
 
             return products;
@@ -75,10 +75,10 @@ namespace PetStore.Services.Data
         {
             ProductDTO product = this.productRepository
                                     .AllAsNoTracking().Where(p => p.Id == productId)
-                                    .Select(pDTO => new ProductDTO(pDTO.Name, pDTO.Price)
+                                    .Select(p => new ProductDTO(p.Name, p.Price, p.Image)
                                     {
-                                        CategoryId = pDTO.CategoryId,
-                                        CategoryName = pDTO.Category.Name,
+                                        CategoryId = p.CategoryId,
+                                        CategoryName = p.Category.Name,
                                     })
                                     .FirstOrDefault();
 

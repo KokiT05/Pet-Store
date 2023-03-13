@@ -32,6 +32,8 @@ namespace PetStore.Data.Models
         [Range(PetValidationConstants.MinPrice, PetValidationConstants.MaxPrice)]
         public decimal Price { get; set; }
 
+        public string Image { get; set; }
+
         [Required]
         [ForeignKey(nameof(Category))]
         public string CategoryId { get; set; }

@@ -10,11 +10,14 @@ namespace PetStore.Services
 {
     public class CategoryDTO
     {
-        public CategoryDTO(string name)
+        public CategoryDTO(string categoryId, string name)
         {
+            this.CategoryId = categoryId;
             this.Name = name;
             this.ProductDTOs = new HashSet<ProductDTO>();
         }
+
+        public string CategoryId { get; set; }
 
         public string Name { get; set; }
 
